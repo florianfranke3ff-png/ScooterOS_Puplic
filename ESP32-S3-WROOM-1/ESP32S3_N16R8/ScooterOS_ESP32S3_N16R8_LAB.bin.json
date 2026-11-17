@@ -1,0 +1,12 @@
+{
+  "project": "ScooterOS",
+  "board": "esp32s3-wroom1-n16r8",
+  "chip": "ESP32-S3",
+  "version": "0.1.2",
+  "channel": "lab",
+  "size": 1213808,
+  "sha256": "1cf17886417b0c671715448207f01b47f06ec55245dc474b27ffea60fea6393e",
+  "url": "https://raw.githubusercontent.com/florianfranke3ff-png/ScooterOS_Puplic/main/ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin",
+  "test_only": true,
+  "warning": "UNSIGNED BENCH TEST ONLY; NO DRIVETRAIN"
+}
