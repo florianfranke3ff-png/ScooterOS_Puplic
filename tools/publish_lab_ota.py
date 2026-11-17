@@ -79,10 +79,10 @@ def main() -> None:
     version = app_version(data)
     major, minor, patch = (int(v) for v in version.split("."))
     if (major, minor, patch) < (0, 1, 4):
-        raise SystemExit(
-            "This publishing workflow starts at 0.1.4; do not replace "
-            "the known working 0.1.3 OTA release with an older image"
-        )
+        # Updating this workflow must not republish or invalidate the last
+        # already-working 0.1.3 release while no new BIN has been uploaded.
+        print("Existing 0.1.3 image detected. No new release to publish.")
+        return
     write_manifest(MANIFEST, build_manifest(data, version, IMAGE_URL))
 
     # The old 0.1.3 firmware has the LAB path hard-coded. A bridge release is
