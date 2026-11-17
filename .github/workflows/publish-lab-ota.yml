@@ -1,7 +1,7 @@
 # LAB ONLY. Production ScooterOS updates must remain signed.
-# Upload exactly ONE file, "ScooterOS.bin", to the repository root.
-# GitHub then generates the LAB BIN and integrity manifest for existing 0.1.1
-# scooteros_s3_unsigned_ota_test devices; no JSON creation by user.
+# Upload ONE file, normally "ScooterOS.bin" at repository root.
+# Also accept the legacy upload path for backwards compatibility.
+# GitHub generates the LAB BIN and integrity manifest for config-only boards.
 name: ScooterOS - publish one BIN (LAB only)
 
 on:
@@ -9,6 +9,9 @@ on:
     branches: [main]
     paths:
       - 'ScooterOS.bin'
+      - 'ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin'
+      - '.github/workflows/publish-lab-ota.yml'
+      - 'tools/publish_lab_ota.py'
   workflow_dispatch:
 
 permissions:
