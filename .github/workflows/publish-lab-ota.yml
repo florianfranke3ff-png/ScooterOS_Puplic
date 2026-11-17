@@ -1,0 +1,43 @@
+# LAB ONLY. Production ScooterOS updates must remain signed.
+# Upload exactly ONE file, "ScooterOS.bin", to the repository root.
+# GitHub then generates the LAB BIN and integrity manifest for existing 0.1.1
+# scooteros_s3_unsigned_ota_test devices; no JSON creation by user.
+name: ScooterOS - publish one BIN (LAB only)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ScooterOS.bin'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scooteros-lab-ota-main
+  cancel-in-progress: false
+
+jobs:
+  publish-lab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public firmware repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Validate firmware and generate OTA files
+        run: python3 tools/publish_lab_ota.py
+
+      - name: Publish generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin ota/esp32s3-wroom1-n16r8-lab.json
+          if git diff --cached --quiet; then
+            echo "OTA lab files already match ScooterOS.bin"
+            exit 0
+          fi
+          git commit -m "Publish LAB OTA release from ScooterOS.bin"
+          git push origin HEAD:main
