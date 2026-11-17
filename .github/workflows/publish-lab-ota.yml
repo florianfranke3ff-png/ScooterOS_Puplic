@@ -36,7 +36,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A --             ota/esp32s3-wroom1-n16r8.json             ota/esp32s3-wroom1-n16r8-lab.json             ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin
+          # Stage new/old manifest and alias, including eventual legacy deletions.
+          git add -A -- ota/ ESP32-S3-WROOM-1/ESP32S3_N16R8/
           if git diff --cached --quiet; then
             echo "No generated changes"
             exit 0
