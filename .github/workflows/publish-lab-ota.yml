@@ -1,14 +1,13 @@
-# LAB ONLY. Production ScooterOS updates must remain signed.
-# Upload ONE file, normally "ScooterOS.bin" at repository root.
-# Also accept the legacy upload path for backwards compatibility.
-# GitHub generates the LAB BIN and integrity manifest for config-only boards.
-name: ScooterOS - publish one BIN (LAB only)
+# Non-drivable ScooterOS development firmware only.
+# Upload exactly ONE normal firmware file; manifest generation is automatic.
+# Bridge 0.1.4 is compatible with earlier 0.1.3 devices that hard-code LAB URL.
+# New 0.1.4 firmware itself exclusively downloads the normal BIN path.
+name: ScooterOS OTA - publish standard BIN
 
 on:
   push:
     branches: [main]
     paths:
-      - 'ScooterOS.bin'
       - 'ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin'
       - '.github/workflows/publish-lab-ota.yml'
       - 'tools/publish_lab_ota.py'
@@ -18,29 +17,29 @@ permissions:
   contents: write
 
 concurrency:
-  group: scooteros-lab-ota-main
+  group: scooteros-ota-main
   cancel-in-progress: false
 
 jobs:
-  publish-lab:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout public firmware repo
+      - name: Checkout current image
         uses: actions/checkout@v4
         with:
           persist-credentials: true
 
-      - name: Validate firmware and generate OTA files
+      - name: Validate real BIN and create OTA manifest
         run: python3 tools/publish_lab_ota.py
 
-      - name: Publish generated files
+      - name: Commit generated OTA manifest and transitional alias when needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin ota/esp32s3-wroom1-n16r8-lab.json
+          git add -A --             ota/esp32s3-wroom1-n16r8.json             ota/esp32s3-wroom1-n16r8-lab.json             ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin
           if git diff --cached --quiet; then
-            echo "OTA lab files already match ScooterOS.bin"
+            echo "No generated changes"
             exit 0
           fi
-          git commit -m "Publish LAB OTA release from ScooterOS.bin"
+          git commit -m "Auto-publish ScooterOS OTA manifest"
           git push origin HEAD:main
