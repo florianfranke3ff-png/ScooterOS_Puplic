@@ -8,9 +8,11 @@
       "chip": "ESP32-S3",
       "flash_bytes": 16777216,
       "psram_bytes": 8388608,
-      "version": "0.1.0",
+      "version": "0.1.1",
       "firmware_size_bytes": 1100256,
-      "firmware_url": "https://raw.githubusercontent.com/florianfranke3ff-png/ScooterOS_Puplic/main/ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin"
+      "firmware_url": "https://raw.githubusercontent.com/florianfranke3ff-png/ScooterOS_Puplic/main/ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin",
+      "test_only": true,
+      "test_note": "Nur Test der Versionspruefung auf Seite 4; die verlinkte BIN ist weiterhin die vorhandene Version 0.1.0. OTA-Installation bleibt deaktiviert."
     }
   ]
 }
