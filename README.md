@@ -18,3 +18,8 @@ Dieses öffentliche Repository enthält Firmware-Artefakte, nach ESP32-Modul und
 6. Für eine Erstinstallation können zusätzlich Bootloader und Partitionstabelle nötig sein. Vor dem Flashen die konkrete Hardware und das Ziel-Layout verifizieren.
 
 **Sicherheit:** ScooterOS befindet sich noch in der Entwicklung. Nicht als fahrfähige Steuerungs-Firmware einsetzen, solange Fahrzeug- und OTA-Sicherheitsfunktionen nicht geprüft und freigegeben sind.
+
+
+## Firmware-Katalog (nur Prüfung)
+
+ScooterOS kann die Board-spezifischen verfügbaren Firmware-Versionen aus [firmware-index.json](firmware-index.json) ermitteln. **Dieser Katalog ist unsigniert und ermöglicht noch kein OTA-Flash.** [Dokumentation](docs/firmware-catalog.md).

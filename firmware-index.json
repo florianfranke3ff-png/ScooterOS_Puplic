@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "catalog_trust": "informational_only_unsigned_no_installation",
+  "releases": [
+    {
+      "hardware_id": "esp32s3-wroom1-n16r8",
+      "module": "ESP32-S3-WROOM-1-N16R8",
+      "chip": "ESP32-S3",
+      "flash_bytes": 16777216,
+      "psram_bytes": 8388608,
+      "version": "0.1.0",
+      "firmware_size_bytes": 1100256,
+      "firmware_url": "https://raw.githubusercontent.com/florianfranke3ff-png/ScooterOS_Puplic/main/ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin"
+    }
+  ]
+}
