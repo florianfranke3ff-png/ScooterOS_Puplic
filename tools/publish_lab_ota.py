@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Publish a one-file ScooterOS OTA release for NON-DRIVABLE LAB devices only.
 
-User only uploads ScooterOS.bin to this public repository. GitHub Actions
-validates the ESP-IDF image and generates the legacy LAB filename and manifest
+User uploads ScooterOS.bin to the repository root. The old firmware path is
+also accepted for backwards compatibility. GitHub Actions validates the
+ESP-IDF image and generates the LAB filename and manifest
 expected by already-flashed scooteros_s3_unsigned_ota_test devices.
 
 Never use these unsigned releases on a vehicle with connected motor control.
@@ -16,6 +17,7 @@ import re
 from pathlib import Path
 
 SOURCE = Path("ScooterOS.bin")
+LEGACY_SOURCE = Path("ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin")
 LAB_BIN = Path("ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8_LAB.bin")
 MANIFEST = Path("ota/esp32s3-wroom1-n16r8-lab.json")
 LAB_URL = (
@@ -47,9 +49,13 @@ def read_app_descriptor(blob: bytes) -> tuple[str, str]:
 
 
 def main() -> None:
-    if not SOURCE.is_file():
-        raise SystemExit("Upload ScooterOS.bin to the repository root first")
-    blob = SOURCE.read_bytes()
+    # Prefer the one-file upload at repository root. Also accept existing
+    # older uploads at the legacy filename, without requiring re-upload.
+    source = SOURCE if SOURCE.is_file() else LEGACY_SOURCE
+    if not source.is_file():
+        raise SystemExit("Firmware missing: upload ScooterOS.bin at repository root")
+    print(f"Using release image from: {source}")
+    blob = source.read_bytes()
     version, _ = read_app_descriptor(blob)
 
     # Existing 0.1.1 lab firmware pins THIS exact LAB download URL. Keeping the
