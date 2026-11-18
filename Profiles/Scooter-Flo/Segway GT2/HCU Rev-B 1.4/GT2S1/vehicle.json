@@ -17,6 +17,23 @@
       "enabled": false,
       "local_can_id": 253,
       "target_vesc_id": 1
+    },
+    "blinker": {
+      "enabled": false,
+      "visible": true,
+      "editable": true,
+      "auto_off_enabled": true,
+      "timeout_seconds": 8,
+      "half_period_ms": 500,
+      "hazard_enabled": true,
+      "hazard_combo_ms": 1000,
+      "can_sync": {
+        "enabled": false,
+        "protocol": "hcu_vcu_legacy",
+        "tx_interval_ms": 50,
+        "tail_light_mode": "always_on",
+        "white_standlight_on": false
+      }
     }
   },
   "ride_modes": {
