@@ -217,11 +217,5 @@
         "speed_limit_kmh": 99
       }
     ]
-  },
-  "bench_motor_test": {
-    "enabled": false,
-    "motor_can_id": 1,
-    "maximum_current_a": 1,
-    "maximum_pulse_ms": 900
   }
 }
