@@ -1,0 +1,283 @@
+{
+  "schema_version": 4,
+  "board": {
+    "id": "gt2_hcu_rev_b_slave",
+    "name": "Segway GT2 HCU Rev-B (SLAVE)",
+    "pcb_id": "HCU Rev-B ESP32-S3 1.4",
+    "pcb_vendor": "Dark Monster / Scooter Flo",
+    "microcontroller": {
+      "installed": true,
+      "family": "esp32",
+      "model": "ESP32-S3-WROOM-1-N16R8"
+    }
+  },
+  "buses": {
+    "i2c": [
+      {
+        "id": "i2c_shared",
+        "installed": true,
+        "sda_gpio": 8,
+        "scl_gpio": 9,
+        "role": "target",
+        "target_address": 66,
+        "frequency_hz": 100000
+      }
+    ],
+    "spi": [
+      {
+        "id": "spi_cc1101",
+        "installed": true,
+        "sclk_gpio": 39,
+        "mosi_gpio": 40,
+        "miso_gpio": 20,
+        "cs_gpio": 41
+      }
+    ],
+    "uart": [
+      {
+        "id": "uart_service",
+        "installed": true,
+        "tx_gpio": 43,
+        "rx_gpio": 44
+      },
+      {
+        "id": "uart_fingerprint",
+        "installed": true,
+        "tx_gpio": 15,
+        "rx_gpio": 16
+      },
+      {
+        "id": "uart_lte",
+        "installed": true,
+        "tx_gpio": 17,
+        "rx_gpio": 18
+      }
+    ],
+    "can": [],
+    "onewire": []
+  },
+  "ics": {
+    "io_expanders": [],
+    "motion_sensors": [],
+    "additional_ics": [
+      {
+        "id": "master_s3",
+        "installed": true,
+        "model": "ESP32-S3-WROOM-1-N16R8",
+        "connection": "i2c",
+        "address": {
+          "bus": "i2c_shared",
+          "device_address": null
+        },
+        "note": "Master steuert I2C Bus"
+      },
+      {
+        "id": "cc1101",
+        "installed": true,
+        "model": "CC1101",
+        "connection": "spi",
+        "address": {
+          "bus": "spi_cc1101",
+          "cs_pin": 41
+        },
+        "gdo0_gpio": 10
+      },
+      {
+        "id": "lte_a7608e",
+        "installed": true,
+        "model": "A7608E-H",
+        "connection": null,
+        "address": null
+      },
+      {
+        "id": "fingerprint",
+        "installed": true,
+        "model": "Fingerprint UART",
+        "connection": null,
+        "address": null
+      }
+    ]
+  },
+  "inputs": {
+    "throttle": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "brake_front": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "brake_rear": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "ambient_light": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 4
+      },
+      "signal": "analog",
+      "model": "GL5528",
+      "measurement": "relative_light"
+    },
+    "display_light_sensor": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "buttons": [],
+    "outdoor_temperature": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "ambient_temperature_inside": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 5
+      },
+      "signal": "analog",
+      "model": "MCP9700T-E/TT",
+      "measurement": "celsius"
+    },
+    "ambient_humidity": {
+      "installed": false,
+      "connection": null,
+      "address": null
+    },
+    "sleep_signal": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 19
+      },
+      "signal": "digital",
+      "note": "Vom Master GPIO3, INPUT only"
+    }
+  },
+  "outputs": {
+    "lights": [
+      {
+        "id": "rear_brake",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 11
+        },
+        "control": "on_off",
+        "active_level": "high"
+      },
+      {
+        "id": "blinker_left",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 13
+        },
+        "control": "on_off",
+        "active_level": "high"
+      },
+      {
+        "id": "blinker_right",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 14
+        },
+        "control": "on_off",
+        "active_level": "high"
+      },
+      {
+        "id": "matrix_brake_ws2812",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 1
+        },
+        "control": "ws2812",
+        "led_count": null
+      },
+      {
+        "id": "xlight_ws2812",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 2
+        },
+        "control": "ws2812",
+        "led_count": null
+      },
+      {
+        "id": "floor_left_ws2812",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 48
+        },
+        "control": "ws2812",
+        "led_count": null
+      },
+      {
+        "id": "floor_right_ws2812",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 47
+        },
+        "control": "ws2812",
+        "led_count": null
+      },
+      {
+        "id": "lightbar_ws2812",
+        "installed": true,
+        "connection": "gpio",
+        "address": {
+          "pin": 42
+        },
+        "control": "ws2812",
+        "led_count": null
+      }
+    ],
+    "buzzer": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 21
+      },
+      "control": "on_off",
+      "note": "PAM8907 DIN: Piezo, genauer Treiber vor Ansteuerung pruefen"
+    },
+    "audio_pwm": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 6
+      },
+      "control": "pwm",
+      "note": "PAM8302A"
+    },
+    "fingerprint_buffer_enable": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 12
+      },
+      "active_level": "low"
+    },
+    "status_led": {
+      "installed": true,
+      "connection": "gpio",
+      "address": {
+        "pin": 38
+      },
+      "active_level": "high"
+    }
+  },
+  "displays": [],
+  "can_nodes": []
+}
