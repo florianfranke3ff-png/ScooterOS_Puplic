@@ -10,6 +10,12 @@
     "connection": {
       "type": "can",
       "bus": "can_main"
+    },
+    "limits": {
+      "front_motor_current_a": null,
+      "rear_motor_current_a": null,
+      "front_ebrake_current_a": null,
+      "rear_ebrake_current_a": null
     }
   },
   "addons": {
@@ -25,17 +31,41 @@
       {
         "id": "eco",
         "name": "Eco",
-        "enabled": true
+        "enabled": true,
+        "limits": {
+          "front_motor_current_a": null,
+          "rear_motor_current_a": null,
+          "front_ebrake_current_a": null,
+          "rear_ebrake_current_a": null,
+          "battery_regen_current_a": null,
+          "speed_limit_kmh": null
+        }
       },
       {
         "id": "drive",
         "name": "Drive",
-        "enabled": true
+        "enabled": true,
+        "limits": {
+          "front_motor_current_a": null,
+          "rear_motor_current_a": null,
+          "front_ebrake_current_a": null,
+          "rear_ebrake_current_a": null,
+          "battery_regen_current_a": null,
+          "speed_limit_kmh": null
+        }
       },
       {
         "id": "race",
         "name": "Race",
-        "enabled": true
+        "enabled": true,
+        "limits": {
+          "front_motor_current_a": null,
+          "rear_motor_current_a": null,
+          "front_ebrake_current_a": null,
+          "rear_ebrake_current_a": null,
+          "battery_regen_current_a": null,
+          "speed_limit_kmh": null
+        }
       }
     ]
   },
@@ -150,5 +180,206 @@
     },
     "min_span_raw": 600,
     "deadzone_percent": 3
+  },
+  "settings_access": {
+    "defaults": {
+      "webui": {
+        "visible": true,
+        "editable": false
+      },
+      "app": {
+        "visible": true,
+        "editable": false
+      }
+    },
+    "rules": {
+      "vesc.enabled": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "vesc.limits.front_motor_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "vesc.limits.rear_motor_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "vesc.limits.front_ebrake_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "vesc.limits.rear_ebrake_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.default_mode": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": true
+        },
+        "app": {
+          "visible": true,
+          "editable": true
+        }
+      },
+      "ride_modes.modes.*.name": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": true
+        },
+        "app": {
+          "visible": true,
+          "editable": true
+        }
+      },
+      "ride_modes.modes.*.limits.front_motor_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.modes.*.limits.rear_motor_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.modes.*.limits.front_ebrake_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.modes.*.limits.rear_ebrake_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.modes.*.limits.battery_regen_current_a": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "ride_modes.modes.*.limits.speed_limit_kmh": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      },
+      "power_management.idle_shutdown.timeout_sec": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": true
+        },
+        "app": {
+          "visible": true,
+          "editable": true
+        }
+      },
+      "connectivity.wifi.enabled": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": true
+        },
+        "app": {
+          "visible": true,
+          "editable": true
+        }
+      },
+      "connectivity.bluetooth.enabled": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": true
+        },
+        "app": {
+          "visible": true,
+          "editable": true
+        }
+      },
+      "addons.vesc_express.enabled": {
+        "available": true,
+        "webui": {
+          "visible": true,
+          "editable": false
+        },
+        "app": {
+          "visible": true,
+          "editable": false
+        }
+      }
+    }
   }
 }
