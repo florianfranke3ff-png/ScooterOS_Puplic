@@ -33,3 +33,19 @@ leben, die WLAN-Netze bleiben separat in `wifi.json`. Eine `vesc.json`
 ist nicht vorgesehen. Vor einer Freigabe müssen das aktuelle VESC-WebUI
 (`/user/vesc_control.json`), die Batterie-Overrides und sämtliche
 Backend-Schreibzugriffe migriert und validiert werden.
+
+## WebUI-Praxis (nach Firmware-Integration)
+
+Im privaten ScooterOS-Entwicklungsbranch existiert ein universeller
+Fahrzeugprofil-Editor unter `/vehicle`. Dieser liest den tatsächlichen
+LittleFS-Inhalt der `vehicle.json` und erzeugt automatisch Eingabefelder.
+Hardwareentwickler sehen alle vorhandenen Werte einschließlich verborgener
+oder deaktivierter Einstellungen. Die Vorschau für Endnutzer zeigt nur
+freigegebene Felder; standardmäßig sind neue Felder für sie **unsichtbar**.
+Änderungen werden im nicht fahrfähigen Konfigurationsmodus über den
+validierten Paar-Speicherweg in LittleFS übernommen.
+
+**Noch nicht produktiv:** Kein separates Entwicklerkonto, kein Authentifizierungs-
+oder Service-Unlock für fahrfähige Fahrzeuge. Vor Freigabe müssen ein
+serverseitiger Authentifizierungs-/PARK-Gate und die Migrationsarbeiten an
+VESC- und Batterie-WebUI fertiggestellt und getestet werden.
