@@ -1,0 +1,8 @@
+{
+  "id": "GT2S1",
+  "pin": "27",
+  "name": "Segway GT2 Rev-B Slave",
+  "description": "HCU Rev-B Slave · ESP32-S3-WROOM-1-N16R8",
+  "folder": "profiles/GT2S1",
+  "version": "Test 1"
+}
