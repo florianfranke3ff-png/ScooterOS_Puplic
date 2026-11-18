@@ -184,11 +184,11 @@
   "settings_access": {
     "defaults": {
       "webui": {
-        "visible": true,
+        "visible": false,
         "editable": false
       },
       "app": {
-        "visible": true,
+        "visible": false,
         "editable": false
       }
     },
