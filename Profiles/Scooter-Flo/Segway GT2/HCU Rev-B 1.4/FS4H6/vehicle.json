@@ -132,7 +132,7 @@
     }
   },
   "diagnostics": {
-    "can_listen_only": false,
+    "can_listen_only": true,
     "vesc_can_ids": [
       1,
       2
@@ -150,5 +150,81 @@
     },
     "min_span_raw": 600,
     "deadzone_percent": 3
+  },
+  "battery": {
+    "enabled": true,
+    "source": "vesc_voltage",
+    "manufacturer": "none",
+    "chemistry": "li_ion",
+    "series_cells": 20,
+    "parallel_groups": 6,
+    "cell_capacity_ah": 0,
+    "front_vesc_can_id": 1,
+    "rear_vesc_can_id": 2
+  },
+  "drive_limits": {
+    "enabled": false,
+    "verified_for_vehicle": false,
+    "reference_profile": "ninebot_max_g3_hcu",
+    "battery": {
+      "soc_empty_reference_v": 60.17,
+      "soc_full_reference_v": 83.59,
+      "undervoltage_cutoff_start_v": null,
+      "undervoltage_cutoff_end_v": null,
+      "discharge_current_limit_a": null,
+      "charge_current_limit_a": null,
+      "regen_disable_v": 82.8,
+      "regen_enable_v": 82.5,
+      "regen_release_ms": 500
+    },
+    "front_motor": {
+      "drive_current_max_a": 40,
+      "brake_current_max_a": 10,
+      "regen_current_max_a": 5
+    },
+    "rear_motor": {
+      "drive_current_max_a": 40,
+      "brake_current_max_a": 10,
+      "regen_current_max_a": 5
+    },
+    "can": {
+      "command_interval_ms": 20,
+      "status_timeout_ms": 500,
+      "heartbeat_interval_ms": 200,
+      "motor_side_timeout_ms": 1000,
+      "motor_side_timeout_bench_verified": false
+    },
+    "modes": [
+      {
+        "id": "eco",
+        "front_drive_current_a": 20,
+        "rear_drive_current_a": 20,
+        "front_brake_current_a": 10,
+        "rear_brake_current_a": 10,
+        "front_regen_current_a": 5,
+        "rear_regen_current_a": 5,
+        "speed_limit_kmh": 35
+      },
+      {
+        "id": "drive",
+        "front_drive_current_a": 30,
+        "rear_drive_current_a": 30,
+        "front_brake_current_a": 10,
+        "rear_brake_current_a": 10,
+        "front_regen_current_a": 5,
+        "rear_regen_current_a": 5,
+        "speed_limit_kmh": 40
+      },
+      {
+        "id": "race",
+        "front_drive_current_a": 40,
+        "rear_drive_current_a": 40,
+        "front_brake_current_a": 10,
+        "rear_brake_current_a": 10,
+        "front_regen_current_a": 5,
+        "rear_regen_current_a": 5,
+        "speed_limit_kmh": 99
+      }
+    ]
   }
 }
