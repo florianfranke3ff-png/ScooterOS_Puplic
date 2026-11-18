@@ -2,11 +2,22 @@
   "schema_version": 2,
   "name": "Segway GT2 Rev-B Master",
   "drivetrain": {
-    "motor_count": 0,
-    "motors": []
+    "motor_count": 2,
+    "motors": [
+      {
+        "id": "front",
+        "controller_id": 1,
+        "position": "front"
+      },
+      {
+        "id": "rear",
+        "controller_id": 2,
+        "position": "rear"
+      }
+    ]
   },
   "vesc": {
-    "enabled": false,
+    "enabled": true,
     "connection": {
       "type": "can",
       "bus": "can_main"
@@ -132,7 +143,7 @@
     }
   },
   "diagnostics": {
-    "can_listen_only": true,
+    "can_listen_only": false,
     "vesc_can_ids": [
       1,
       2
@@ -227,11 +238,5 @@
         "speed_limit_kmh": 99
       }
     ]
-  },
-  "bench_motor_test": {
-    "enabled": false,
-    "motor_can_id": 1,
-    "maximum_current_a": 1,
-    "maximum_pulse_ms": 900
   }
 }
