@@ -4,5 +4,9 @@
   "name": "Segway GT2 Rev-B Master",
   "description": "HCU Rev-B Master · ESP32-S3-WROOM-1-N16R8",
   "folder": "profiles/FS4H6",
-  "version": "Test 1"
+  "version": "Test 1",
+  "developer": "Scooter-Flo",
+  "model": "Segway GT2",
+  "hardware_revision": "HCU Rev-B 1.4",
+  "folder_v2": "Profiles/Scooter-Flo/Segway GT2/HCU Rev-B 1.4/FS4H6"
 }
