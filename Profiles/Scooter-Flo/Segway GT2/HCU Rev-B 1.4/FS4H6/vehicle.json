@@ -175,7 +175,8 @@
       "charge_current_limit_a": null,
       "regen_disable_v": 82.8,
       "regen_enable_v": 82.5,
-      "regen_release_ms": 500
+      "regen_release_ms": 500,
+      "overvoltage_cutoff_v": null
     },
     "front_motor": {
       "drive_current_max_a": 40,
