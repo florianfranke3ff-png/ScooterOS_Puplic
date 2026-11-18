@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "name": "Segway GT2 Rev-B Slave",
+  "drivetrain": {
+    "motor_count": 0,
+    "motors": []
+  },
+  "vesc": {
+    "enabled": false,
+    "connection": {
+      "type": "can",
+      "bus": "can_main"
+    }
+  },
+  "addons": {
+    "vesc_express": {
+      "enabled": false,
+      "local_can_id": 253,
+      "target_vesc_id": 1
+    }
+  },
+  "ride_modes": {
+    "default_mode": "drive",
+    "modes": [
+      {
+        "id": "eco",
+        "name": "Eco",
+        "enabled": true
+      },
+      {
+        "id": "drive",
+        "name": "Drive",
+        "enabled": true
+      },
+      {
+        "id": "race",
+        "name": "Race",
+        "enabled": true
+      }
+    ]
+  },
+  "reverse": {
+    "enabled": false
+  },
+  "connectivity": {
+    "wifi": {
+      "enabled": false,
+      "mode": "auto",
+      "ap": {
+        "ssid": "ScooterOS GT2",
+        "ipv4": "192.168.4.1",
+        "ssid_hidden": false
+      }
+    },
+    "bluetooth": {
+      "enabled": false,
+      "advertise_name": false
+    }
+  },
+  "security": {
+    "maintenance": {
+      "pairing_window_seconds": 120,
+      "session_max_seconds": 600
+    }
+  },
+  "power_management": {
+    "enabled": false,
+    "shutdown_mode": "automatic",
+    "idle_shutdown": {
+      "enabled": true,
+      "timeout_sec": 600,
+      "warning_sec": 10,
+      "reset_on_controls": true,
+      "reset_on_touch": true,
+      "require_standstill": true
+    },
+    "soft_off_timeout_sec": 1800,
+    "wake_sources": {
+      "button": false,
+      "charger": false,
+      "motion": false,
+      "can": false,
+      "timer": false,
+      "touch": false
+    },
+    "charging": {
+      "keep_awake": true
+    },
+    "alarm": {
+      "keep_awake": true,
+      "power_state": "soft_off",
+      "runtime_warning": {
+        "enabled": true,
+        "show_on_activation": true
+      },
+      "low_battery": {
+        "priority": "alarm",
+        "critical_action": "keep_alive",
+        "respect_battery_protection": true
+      }
+    },
+    "battery_protection": {
+      "enabled": true,
+      "warning_percent": 20
+    }
+  },
+  "board_id": "gt2_hcu_rev_b_slave",
+  "scheduler": {
+    "mode": "custom",
+    "tasks": {
+      "core_update": {
+        "cpu": 1,
+        "priority": 5,
+        "interval_ms": 100
+      }
+    }
+  },
+  "filesystem": {
+    "browser": {
+      "default_visible": true,
+      "visibility": {
+        "/bios.json": true,
+        "/vehicle.json": true,
+        "/.system": true,
+        "/.system/wifi.json": true,
+        "/user": true,
+        "/nvs": true,
+        "/nvs/user_name.json": true,
+        "/nvs/ap_pass.json": true,
+        "/nvs/wizard_step.json": true
+      }
+    }
+  },
+  "throttle_calibration": {
+    "mode": "after_setup",
+    "allow_skip": true,
+    "preset": {
+      "rest_raw": null,
+      "full_raw": null
+    },
+    "min_span_raw": 600,
+    "deadzone_percent": 3
+  }
+}
