@@ -22,6 +22,8 @@ ROOT = Path("ESP32-S3-WROOM-1/ESP32S3_N16R8")
 IMAGE = ROOT / "ScooterOS_ESP32S3_N16R8.bin"
 LEGACY_IMAGE = ROOT / "ScooterOS_ESP32S3_N16R8_LAB.bin"
 MANIFEST = Path("ota/esp32s3-wroom1-n16r8.json")
+CATALOG = Path("firmware-index.json")  # informational overview, same BIN
+HARDWARE_ID = "esp32s3-wroom1-n16r8"
 LEGACY_MANIFEST = Path("ota/esp32s3-wroom1-n16r8-lab.json")
 BASE_URL = ("https://raw.githubusercontent.com/"
             "florianfranke3ff-png/ScooterOS_Puplic/main/"
@@ -72,6 +74,23 @@ def write_manifest(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def update_catalog(version: str, size: int) -> None:
+    """Keep firmware-index.json in step with the OTA manifest.
+
+    Both files describe the same BIN; before this, only the manifest was
+    written and the catalog fell behind (0.1.1 next to a 0.1.6 image).
+    """
+    catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+    entries = [r for r in catalog.get("releases", []) if r.get("hardware_id") == HARDWARE_ID]
+    if len(entries) != 1:
+        raise SystemExit(f"{CATALOG}: expected exactly one release for {HARDWARE_ID}")
+    entries[0]["version"] = version
+    entries[0]["firmware_size_bytes"] = size
+    entries[0]["test_note"] = ("Nur Information, keine Installation. Version und Groesse stammen aus der "
+                               "verlinkten BIN; Updates prueft ScooterOS ueber " + str(MANIFEST) + ".")
+    CATALOG.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     if not IMAGE.is_file():
         raise SystemExit(f"Upload the new BIN to {IMAGE} first")
@@ -84,6 +103,7 @@ def main() -> None:
         print("Existing 0.1.3 image detected. No new release to publish.")
         return
     write_manifest(MANIFEST, build_manifest(data, version, IMAGE_URL))
+    update_catalog(version, len(data))
 
     # The old 0.1.3 firmware has the LAB path hard-coded. A bridge release is
     # unavoidable if we want a seamless transition without a USB reflash.

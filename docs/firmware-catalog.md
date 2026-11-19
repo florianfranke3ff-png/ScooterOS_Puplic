@@ -1,6 +1,6 @@
 # ScooterOS Firmware-Katalog
 
-Der `firmware-index.json` ist die **read-only** Update-Übersicht für den ScooterOS-Einrichtungsassistenten.
+Der `firmware-index.json` ist eine **read-only** Übersicht der verfügbaren Firmware. Aktuelle ScooterOS-Versionen prüfen Updates über `ota/esp32s3-wroom1-n16r8.json`. Beide Dateien schreibt `tools/publish_lab_ota.py` aus derselben BIN, Version und Größe stimmen deshalb immer überein.
 
 ## Auswahlverfahren
 

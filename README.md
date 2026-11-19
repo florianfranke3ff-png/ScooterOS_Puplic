@@ -22,4 +22,4 @@ Dieses öffentliche Repository enthält Firmware-Artefakte, nach ESP32-Modul und
 
 ## Firmware-Katalog (nur Prüfung)
 
-ScooterOS kann die Board-spezifischen verfügbaren Firmware-Versionen aus [firmware-index.json](firmware-index.json) ermitteln. **Dieser Katalog ist unsigniert und ermöglicht noch kein OTA-Flash.** [Dokumentation](docs/firmware-catalog.md).
+Aktuelle ScooterOS-Versionen prüfen Updates über [ota/esp32s3-wroom1-n16r8.json](ota/esp32s3-wroom1-n16r8.json). [firmware-index.json](firmware-index.json) ist nur eine Übersicht (unsigniert, keine Installation). Beide Dateien schreibt `tools/publish_lab_ota.py` aus derselben BIN, Version und Größe stimmen deshalb immer überein. [Dokumentation](docs/firmware-catalog.md).
