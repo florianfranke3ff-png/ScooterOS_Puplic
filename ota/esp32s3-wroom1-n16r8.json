@@ -2,10 +2,10 @@
   "project": "ScooterOS",
   "board": "esp32s3-wroom1-n16r8",
   "chip": "ESP32-S3",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "channel": "lab",
-  "size": 2881152,
-  "sha256": "d9a4603790d6fa3e8be26f9068050c1d6a83728fef4aca7de1eedc8cd73599ef",
+  "size": 2891136,
+  "sha256": "164eb06214f22d24a252cd2d9868028cb963ffe48ee49cc01fec656e1448d663",
   "url": "https://raw.githubusercontent.com/florianfranke3ff-png/ScooterOS_Puplic/main/ESP32-S3-WROOM-1/ESP32S3_N16R8/ScooterOS_ESP32S3_N16R8.bin",
   "test_only": true,
   "warning": "UNSIGNED DEVELOPMENT OTA; NO CONNECTED DRIVETRAIN"
